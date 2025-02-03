@@ -1,0 +1,41 @@
+/* Given an array A[] of size N, the task is to find the count of array indices such that removing an element from these indices makes the sum of even-indexed and odd-indexed array elements equal. */
+
+public class Solution {
+    public int solve(int[] A) {
+        int count = 0;
+        int sumOdd = 0;
+        int sumEven = 0;
+        int prefixEven[] = new int[A.length];
+        prefixEven[0] = A[0];
+        for(int i=1;i<A.length;i++) {
+            int val = 0;
+            if(i%2 == 0) {
+                val = A[i];
+            }
+            prefixEven[i] = prefixEven[i-1] + val;
+        }
+        int prefixOdd[] = new int[A.length];
+        prefixOdd[0] = 0;
+        for(int i=1;i<A.length;i++) {
+            int val = 0;
+            if(i%2 == 1) {
+                val = A[i];
+            }
+            prefixOdd[i] = prefixOdd[i-1] + val;
+        }
+        for(int i=0;i<A.length;i++){
+            if(i == 0) {
+                sumOdd = prefixEven[A.length-1] - prefixEven[i];
+                sumEven = prefixOdd[A.length-1] - prefixOdd[i];
+            }
+            else {
+                sumOdd = prefixOdd[i-1] + prefixEven[A.length-1] - prefixEven[i];
+                sumEven = prefixEven[i-1] + prefixOdd[A.length-1] - prefixOdd[i];
+            }
+            if(sumOdd == sumEven) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
