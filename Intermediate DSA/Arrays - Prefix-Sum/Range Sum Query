@@ -1,0 +1,27 @@
+/* You are given an integer array A of length N. You are also given a 2D integer array B with dimensions M x 2, where each row denotes a [L, R] query. */
+/* For each query, you have to find the sum of all elements from L to R indices in A (0 - indexed). */
+/* More formally, find A[L] + A[L + 1] + A[L + 2] +... + A[R - 1] + A[R] for each query. */
+
+public class Solution {
+    public long[] rangeSum(int[] A, int[][] B) {
+        long P[] = new long[A.length];
+        P[0] = A[0];
+        for(int i=1;i<A.length;i++) {
+            P[i] = P[i-1] + A[i];
+        }
+        long res[] = new long[B.length];
+        for(int q=0;q<B.length;q++) {
+            int l = B[q][0];
+            int r = B[q][1];
+            long sum = 0;
+            if(l == 0) {
+                sum = P[r];
+            }
+            else {
+                sum = P[r] - P[l-1];
+            }
+            res[q] = sum;
+        }
+        return res;
+    }
+}
