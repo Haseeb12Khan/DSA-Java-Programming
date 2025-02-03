@@ -1,0 +1,27 @@
+/* Given an array A of N integers and also given two integers B and C. Reverse the elements of the array A within the given inclusive range [B, C]. */
+
+public class Solution {
+    public int[] solve(int[] A, int B, int C) {
+        int D[] = new int[A.length];
+        if(A.length == 1) {
+            D[0] = A[0];
+        }
+        else if(B == C) {
+            for(int i=0;i<A.length;i++) {
+                D[i] = A[i];
+            }
+        }
+        else {
+            for(int i=0;i<B;i++) {
+                D[i] = A[i];
+            }
+            for(int i=B;i<=C;i++) {
+                D[i] = A[C-i+B];
+            }
+            for(int i=C+1;i<A.length;i++) {
+                D[i] = A[i];
+            }
+        }
+        return D;
+    }
+}
