@@ -1,0 +1,21 @@
+/* Given an array A of size N. You need to find the sum of Maximum and Minimum element in the given array. */
+
+public class Solution {
+    public int solve(int[] A) {
+        int sum = 0;
+        int max = A[0];
+        for(int i=1;i<A.length;i++) {
+            if(max < A[i]) {
+                max = A[i];
+            }
+        }
+        int min = A[0];
+        for(int i=1;i<A.length;i++) {
+            if(min > A[i]) {
+                min = A[i];
+            }
+        }
+        sum = max+min;
+        return sum;
+    }
+}
