@@ -1,0 +1,21 @@
+/* You are given an integer array A. You have to find the second largest element/value in the array or report that no such element exists. */
+
+public class Solution {
+    public int solve(int[] A) {
+        int second_max = Integer.MIN_VALUE;
+        int first_max = Integer.MIN_VALUE;        
+        if(A == null || A.length < 2) {
+            return -1;
+        }     
+        for(int num : A) {
+            if(num > first_max) {
+                second_max = first_max;
+                first_max = num;
+            }
+            else if(num > second_max && num != first_max) {
+                second_max = num;
+            }
+        }
+        return (second_max == Integer.MIN_VALUE) ? -1 : second_max;
+    }
+}
