@@ -1,0 +1,19 @@
+/* You are given an integer array A of size N.
+   You have to perform B operations. In one operation, you can remove either the leftmost or the rightmost element of the array A.
+   Find and return the maximum possible sum of the B elements that were removed after the B operations. */
+
+public class Solution {
+    public int solve(int[] A, int B) {
+        int maxSum = 0;
+        for(int i=0;i<B;i++) {
+            maxSum += A[i];
+        }
+        int currentSum = maxSum;
+        for(int i=0;i<B;i++) {
+            currentSum -= A[B-1-i];
+            currentSum += A[A.length-1-i];
+            maxSum = Math.max(maxSum,currentSum);
+        }
+        return maxSum;
+    }
+}
