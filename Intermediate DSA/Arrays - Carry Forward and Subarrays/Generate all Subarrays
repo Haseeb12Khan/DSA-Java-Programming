@@ -1,0 +1,22 @@
+/* You are given an array A of N integers. Return a 2D array consisting of all the subarrays of the array */
+
+public class Solution {
+    public int[][] solve(int[] A) {
+        List<int[]> subarraysList = new ArrayList<>();
+        int N = A.length;
+       	for(int start=0;start<N;start++) {
+            for(int end=start;end<N;end++) {
+                int subarray[] = new int[end-start+1];
+                for(int k=start;k<=end;k++) {
+                    subarray[k-start] = A[k];
+                }
+                subarraysList.add(subarray);
+            }
+        }
+        int subarrays[][] = new int[subarraysList.size()][];
+        for(int i=0;i<subarraysList.size();i++) {
+            subarrays[i] = subarraysList.get(i);
+        }
+        return subarrays;
+    }
+}
