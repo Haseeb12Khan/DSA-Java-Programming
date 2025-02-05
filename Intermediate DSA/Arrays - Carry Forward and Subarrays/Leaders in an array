@@ -1,0 +1,24 @@
+/* Given an integer array A containing N distinct integers, you have to find all the leaders in array A.
+   An element is a leader if it is strictly greater than all the elements to its right side. */
+
+public class Solution {
+    public int[] solve(int[] A) {
+        ArrayList<Integer> a = new ArrayList<>();
+        for(int i=0;i<A.length;i++) {
+            int count = 0;
+            for(int j=i;j<A.length;j++) {
+                if(A[i] < A[j]) {
+                    count++;
+                }
+            }
+            if(count == 0) {
+                a.add(A[i]);
+            }
+        }
+        int res[] = new int[a.size()];
+        for(int i=0;i<a.size();i++) {
+            res[i] = a.get(i);
+        }
+        return res;
+    }
+}
