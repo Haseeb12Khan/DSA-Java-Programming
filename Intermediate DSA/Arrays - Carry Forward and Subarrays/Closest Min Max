@@ -1,0 +1,43 @@
+/* Given an array A, find the size of the smallest subarray such that it contains at least one occurrence of the maximum value of the array and at least one occurrence of the minimum value of the array. */
+
+public class Solution {
+    public int solve(int[] A) {
+        int min = A[0];
+        int max = A[0];
+        for(int i=1;i<A.length;i++) {
+            if(min > A[i]) {
+                min = A[i];
+            }
+        }
+        for(int j=1;j<A.length;j++) {
+            if(max < A[j]) {
+                max = A[j];
+            }
+        }
+        if(max == min) {
+            return 1;
+        }
+        int minlength = A.length;
+        int min_idx = -1;
+        for(int k=0;k<A.length;k++) {
+            if(A[k] == min) {
+                min_idx = k;
+            }
+            if(A[k] == max && min_idx != -1) {
+                int length = k-min_idx+1;
+                minlength = Math.min(minlength,length);
+            }
+        }
+        int max_idx = -1;
+        for(int l=0;l<A.length;l++) {
+            if(A[l] == max) {
+                max_idx = l;
+            }
+            if(A[l] == min && max_idx != -1) {
+                int length = l-max_idx+1;
+                minlength = Math.min(minlength,length);
+            }
+        }
+        return minlength;
+    }
+}
