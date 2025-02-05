@@ -1,0 +1,22 @@
+/* Misha likes finding all Subarrays of an Array. 
+   Now she gives you an array A of N elements and told you to find the number of subarrays of A, that have unique elements.
+   Since the number of subarrays could be large, return value % 10^9 +7. */
+
+public class Solution {
+    public int solve(int[] A) {
+        int mod = 1000000007;
+        int n = A.length;
+        HashMap<Integer,Integer> freq = new HashMap<>();
+        int start = 0;
+        int count = 0;
+        for(int end=0;end<n;end++) {
+            if(freq.containsKey(A[end])) {
+                start = Math.max(start,freq.get(A[end])+1);
+            }
+            freq.put(A[end],end);
+            count = count+end-start+1;
+            count = count % mod;
+        }
+        return count;
+    }
+}
